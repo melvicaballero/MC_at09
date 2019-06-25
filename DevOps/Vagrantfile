@@ -16,7 +16,7 @@ Vagrant.configure('2') do |config|
     override.vm.synced_folder '.', '/vagrant', disabled: true
   end
   config.vm.define 'server-1' do |s|	
-	s.vm.provision "docker"
+    s.vm.provision "docker"
     s.vm.provision "docker_compose", compose_version: '1.23.2'		
     s.vm.provider :openstack do |os, override|
       os.server_name = "AT09#{ENV['OS_INITIALS']}01"
