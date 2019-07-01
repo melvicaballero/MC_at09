@@ -1,14 +1,15 @@
 pipeline {
     agent any
 	stages {
-	    stage('Build') {
+	    stage('Assemble') {
 		    steps {
 			    echo 'Building.'
+				sh './quickstart/gradlew assemble -p quickstart'
 			}
         }
-        stage('Test') {
+        stage('Unit Test') {
 		    steps {
-			    echo 'Testing.'
+			    echo 'Execute Unit Test.'				
 			}
         }
 		stage('Deploy') {
