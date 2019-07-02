@@ -4,7 +4,7 @@ pipeline {
         stage('Assemble') {
 	    steps {
 	        echo 'Building.'
-		sh -c './quickstart/gradlew assemble -p quickstart'
+		sh './quickstart/gradlew assemble -p quickstart'
 	    }
         }
         stage('Unit Test') {
