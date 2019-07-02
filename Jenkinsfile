@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Unit Test') {
 	    steps {
-	        echo 'Execute Unit Test.'				
+	        echo 'Execute Unit Test.'	
+		sh './quickstart/gradlew test -p quickstart'
 	    }
         }
 	stage('Deploy') {
