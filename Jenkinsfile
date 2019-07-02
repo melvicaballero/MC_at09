@@ -8,7 +8,7 @@ pipeline {
 		sh './quickstart/gradlew assemble -p quickstart'
 	    }
 	}	
-    }
+    
         stage('Unit Test') {
 	    parallel {
 	        stage('test1') {
@@ -30,4 +30,5 @@ pipeline {
 		echo 'Deploying.'
 	    }
         }
+    }	    
 }
