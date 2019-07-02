@@ -3,21 +3,31 @@ pipeline {
     stages {
         stage('Assemble') {
 	    steps {
-	        echo 'Building.'
+		echo 'Building.'
 		sh 'chmod +x quickstart/gradlew'    
 		sh './quickstart/gradlew assemble -p quickstart'
 	    }
-        }
+	}	
+    }
         stage('Unit Test') {
-	    steps {
-	        echo 'Execute Unit Test.'	
-		sh './quickstart/gradlew test -p quickstart'
-	    }
-        }
+	    parallel {
+	        stage('test1') {
+	            steps {
+	                echo 'Execute Test1.'	
+		        sh './quickstart/gradlew test -p quickstart'
+		    }	
+	        }
+		stage('test2') {
+		    steps {
+		        echo 'Execute Test2.'
+			sh './quickstart/gradlew test -p quickstart'
+		    }
+                }					
+            }
+	}	
 	stage('Deploy') {
-	    steps {
-	        echo 'Deploying.'
+            steps {
+		echo 'Deploying.'
 	    }
         }
-    }   
-}	
+}
