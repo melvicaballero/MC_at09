@@ -7,6 +7,7 @@ pipeline {
         stage('Assemble') {
 	    steps {
 	        echo 'Building.'
+		sh 'chmod +x quickstart'    
 		sh './quickstart/gradlew assemble -p quickstart'
 	    }
         }
