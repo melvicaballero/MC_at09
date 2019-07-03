@@ -1,9 +1,13 @@
 pipeline {
-    agent any 
-    triggers { 
-        cron('H/15 * * * *') 
+    agent any     
     }   
     stages {
+		stage('Check') {
+            steps {
+                echo 'Checking.'
+                sh './quickstart/gradlew check -p quickstart/'
+            }
+        } 
         stage('Assemble') {
 	          steps {
 	              echo 'Building.'
@@ -32,7 +36,7 @@ pipeline {
 	                echo 'Deploying.'
 	            }
 	        }
-        }  
+        } 		
 	post {
         always {
             echo 'One way or another, I have finished'
