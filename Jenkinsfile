@@ -30,7 +30,14 @@ pipeline {
 		             }
 		          }				
 	          }
-	    }	
+	    }
+        stage('Sonarqube') {
+	          steps {
+	              echo 'sonarqube.'
+		          sh 'chmod +x quickstart/gradlew'    
+		          sh './quickstart/gradlew sonarqube -p quickstart'
+	          }
+      	}	
 	    stage('Deploy') {
 	            steps {
 	                echo 'Deploying.'
